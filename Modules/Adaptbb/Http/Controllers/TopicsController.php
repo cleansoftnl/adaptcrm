@@ -18,7 +18,7 @@ class TopicsController extends Controller
 {
     public function view($forum_slug, $topic_slug)
     {
-        $theme = Theme::uses(Cache::get('theme', 'default'))->layout('front');
+        $theme = Theme::uses(Cache::get('theme', 'forumtheme'))->layout('front');
         $forum = Forum::where('slug', '=', $forum_slug)->first();
         $topic = Topic::where('forum_id', '=', $forum->id)->where('slug', '=', $topic_slug)->first();
         $replies = Reply::where('topic_id', '=', $topic->id)->orderBy('created_at', 'ASC')->paginate(15);
@@ -34,7 +34,7 @@ class TopicsController extends Controller
 
     public function add(Request $request, $forum_slug)
     {
-        $theme = Theme::uses(Cache::get('theme', 'default'))->layout('front');
+        $theme = Theme::uses(Cache::get('theme', 'forumtopics'))->layout('front');
         $forum = Forum::where('slug', '=', $forum_slug)->first();
         $model = new Topic;
         $errors = [];

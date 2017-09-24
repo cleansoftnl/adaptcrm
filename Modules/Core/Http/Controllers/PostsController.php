@@ -15,7 +15,7 @@ class PostsController extends Controller
     {
         $post = new Post;
         $post = $post->getBySlug($slug);
-        $theme = Theme::uses(Cache::get('theme', 'default'))->layout('front');
+        $theme = Theme::uses(Cache::get('theme', 'blogview'))->layout('front');
         $theme->set('meta_keywords', $post['post']->meta_keywords);
         $theme->set('meta_description', $post['post']->meta_description);
         $theme->setTitle($post['post']->name);
@@ -38,7 +38,7 @@ class PostsController extends Controller
         $model = new Post;
         $posts['posts_with_data'] = $model->getRelationshipData($paginated);
         // get theme
-        $theme = Theme::uses(Cache::get('theme', 'default'))->layout('front');
+        $theme = Theme::uses(Cache::get('theme', 'archive'))->layout('front');
         // get home page for meta data
         $page = Page::where('slug', '=', 'home')->first();
         // set meta data if possible

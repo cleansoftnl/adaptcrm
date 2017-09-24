@@ -13,7 +13,7 @@ class ForumsController extends Controller
 {
     public function index()
     {
-        $theme = Theme::uses(Cache::get('theme', 'default'))->layout('front');
+        $theme = Theme::uses(Cache::get('theme', 'forumtheme'))->layout('front');
         $forum = new Forum;
         $forums = $forum->getIndex();
         $theme->setTitle('Community Forums');
@@ -22,7 +22,7 @@ class ForumsController extends Controller
 
     public function view($slug)
     {
-        $theme = Theme::uses(Cache::get('theme', 'default'))->layout('front');
+        $theme = Theme::uses(Cache::get('theme', 'forumtheme'))->layout('front');
         $forum = Forum::where('slug', '=', $slug)->first();
         $topics = Topic::where('forum_id', '=', $forum->id)->paginate(15);
         $theme->set('meta_keywords', $forum->meta_keywords);

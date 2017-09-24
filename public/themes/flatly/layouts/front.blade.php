@@ -30,7 +30,7 @@
         href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui-calendar/0.0.8/calendar.min.css">
   <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
-  <link rel="stylesheet" type="text/css" href="/themes/default/assets/css/main.compiled.min.css">
+  <link rel="stylesheet" type="text/css" href="/themes/flatly/assets/css/main.compiled.min.css">
 
   @stack('css')
 </head>

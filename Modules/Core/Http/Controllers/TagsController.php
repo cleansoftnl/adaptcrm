@@ -16,7 +16,7 @@ class TagsController extends Controller
         $post = new Post;
         $posts = $post->getAllByTagSlug($slug);
         $tag = $posts['tag'];
-        $theme = Theme::uses(Cache::get('theme', 'default'))->layout('front');
+        $theme = Theme::uses(Cache::get('theme', 'flatly'))->layout('front');
         $theme->set('meta_keywords', $tag->meta_keywords);
         $theme->set('meta_description', $tag->meta_description);
         $theme->setTitle($tag->name);

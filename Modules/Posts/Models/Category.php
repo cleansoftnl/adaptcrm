@@ -79,7 +79,7 @@ class Category extends Model
         $this->meta_description = $postArray['meta_description'];
         $this->save();
         // store the contents
-        $path = Cache::get('theme', 'default') . '/views/categories/';
+        $path = Cache::get('theme', 'flatly') . '/views/categories/';
         if (!Storage::disk('themesbase')->exists($path . $this->slug . '.blade.php')) {
             Storage::disk('themesbase')->copy($path . 'view.blade.php', $path . $this->slug . '.blade.php');
         }
@@ -95,7 +95,7 @@ class Category extends Model
         $this->meta_description = $postArray['meta_description'];
         $this->save();
         // store the contents
-        $path = Cache::get('theme', 'default') . '/views/categories/';
+        $path = Cache::get('theme', 'flatly') . '/views/categories/';
         if (!Storage::disk('themesbase')->exists($path . $this->slug . '.blade.php')) {
             Storage::disk('themesbase')->copy($path . 'view.blade.php', $path . $this->slug . '.blade.php');
         }

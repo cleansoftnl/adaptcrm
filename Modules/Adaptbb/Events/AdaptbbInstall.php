@@ -8,7 +8,7 @@ class AdaptbbInstall
 {
     public function __construct()
     {
-        $theme = Cache::get('theme', 'default');
+        $theme = Cache::get('theme', 'forumtheme');
         $origViewsPath = 'Adaptbb/Resources/Views/';
         $newViewsPath = $theme . '/views/adaptbb/';
         $partialsViewsPath = $theme . '/partials/adaptbb/';

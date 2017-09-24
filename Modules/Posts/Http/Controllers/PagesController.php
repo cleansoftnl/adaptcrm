@@ -38,8 +38,8 @@ class PagesController extends Controller
     {
         try {
             $page = Page::where('slug', '=', $slug)->firstOrFail();
-            $page->body = Storage::disk('themesbase')->get('default/views/pages/' . $page->slug . '.blade.php');
-            $theme = Theme::uses(Cache::get('theme', 'default'))->layout('front');
+            $page->body = Storage::disk('themesbase')->get('coreui/views/pages/' . $page->slug . '.blade.php');
+            $theme = Theme::uses(Cache::get('theme', 'coreui'))->layout('front');
             $theme->set('meta_keywords', $page->meta_keywords);
             $theme->set('meta_description', $page->meta_description);
             $theme->setTitle($page->name);

@@ -15,10 +15,10 @@ class PagesController extends Controller
 {
     public function home()
     {
-        $theme = Theme::uses(Cache::get('theme', 'default'))->layout('front');
+        $theme = Theme::uses(Cache::get('theme', 'notexist'))->layout('front');
         try {
             $page = Page::where('slug', '=', 'home')->firstOrFail();
-            $page->body = Storage::disk('themesbase')->get('default/views/pages/' . $page->slug . '.blade.php');
+            $page->body = Storage::disk('themesbase')->get('notexist/views/pages/' . $page->slug . '.blade.php');
             $theme->set('meta_keywords', $page->meta_keywords);
             $theme->set('meta_description', $page->meta_description);
             $theme->setTitle('Home');
@@ -34,8 +34,8 @@ class PagesController extends Controller
     {
         try {
             $page = Page::where('slug', '=', $slug)->firstOrFail();
-            $page->body = Storage::disk('themesbase')->get('default/views/pages/' . $page->slug . '.blade.php');
-            $theme = Theme::uses(Cache::get('theme', 'default'))->layout('front');
+            $page->body = Storage::disk('themesbase')->get('existnot/views/pages/' . $page->slug . '.blade.php');
+            $theme = Theme::uses(Cache::get('theme', 'existnot'))->layout('front');
             $theme->set('meta_keywords', $page->meta_keywords);
             $theme->set('meta_description', $page->meta_description);
             $theme->setTitle($page->name);

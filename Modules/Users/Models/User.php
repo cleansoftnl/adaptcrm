@@ -71,12 +71,12 @@ class User extends Authenticatable
 
     public function files()
     {
-        return $this->hasMany('App\Modules\Files\Models\File');
+        return $this->hasMany('App\Modules\Core\Models\File');
     }
 
     public function albums()
     {
-        return $this->hasMany('App\Modules\Files\Models\Album');
+        return $this->hasMany('App\Modules\Core\Models\Album');
     }
 
     public function setPasswordAttribute($password)
@@ -102,6 +102,10 @@ class User extends Authenticatable
 
     public function getRolesList()
     {
+        $roles = Role;
+        dd($roles);
+
+
         return Role::pluck('name', 'name');
     }
 

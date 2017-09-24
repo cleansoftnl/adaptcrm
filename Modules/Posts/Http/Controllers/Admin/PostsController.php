@@ -13,7 +13,7 @@ use App\Modules\Posts\Models\PostRelated;
 use App\Modules\Posts\Models\Field;
 use App\Modules\Posts\Models\Category;
 use App\Modules\Posts\Models\Tag;
-use App\Modules\Files\Models\File;
+use App\Modules\Core\Models\File;
 use Auth;
 use Validator;
 

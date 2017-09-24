@@ -80,8 +80,8 @@ class Category extends Model
         $this->save();
         // store the contents
         $path = Cache::get('theme', 'default') . '/views/categories/';
-        if (!Storage::disk('themes')->exists($path . $this->slug . '.blade.php')) {
-            Storage::disk('themes')->copy($path . 'view.blade.php', $path . $this->slug . '.blade.php');
+        if (!Storage::disk('themesbase')->exists($path . $this->slug . '.blade.php')) {
+            Storage::disk('themesbase')->copy($path . 'view.blade.php', $path . $this->slug . '.blade.php');
         }
         return $this;
     }
@@ -96,8 +96,8 @@ class Category extends Model
         $this->save();
         // store the contents
         $path = Cache::get('theme', 'default') . '/views/categories/';
-        if (!Storage::disk('themes')->exists($path . $this->slug . '.blade.php')) {
-            Storage::disk('themes')->copy($path . 'view.blade.php', $path . $this->slug . '.blade.php');
+        if (!Storage::disk('themesbase')->exists($path . $this->slug . '.blade.php')) {
+            Storage::disk('themesbase')->copy($path . 'view.blade.php', $path . $this->slug . '.blade.php');
         }
         return $this;
     }

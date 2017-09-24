@@ -40,7 +40,7 @@ class Page extends Model
         $this->meta_keywords = $postArray['meta_keywords'];
         $this->meta_description = $postArray['meta_description'];
         $this->save();
-        Storage::disk('themes')->put(Cache::get('theme', 'default') . '/views/pages/' . $this->slug . '.blade.php', $this->body);
+        Storage::disk('themesbase')->put(Cache::get('theme', 'default') . '/views/pages/' . $this->slug . '.blade.php', $this->body);
     }
 
     public function edit($postArray)
@@ -53,14 +53,14 @@ class Page extends Model
         $this->meta_keywords = $postArray['meta_keywords'];
         $this->meta_description = $postArray['meta_description'];
         $this->save();
-        Storage::disk('themes')->put(Cache::get('theme', 'default') . '/views/pages/' . $this->slug . '.blade.php', $this->body);
+        Storage::disk('themesbase')->put(Cache::get('theme', 'default') . '/views/pages/' . $this->slug . '.blade.php', $this->body);
     }
 
     public function delete()
     {
         $path = Cache::get('theme', 'default') . '/views/pages/' . $this->slug . '.blade.php';
-        if (Storage::disk('themes')->exists($path)) {
-            Storage::disk('themes')->delete($path);
+        if (Storage::disk('themesbase')->exists($path)) {
+            Storage::disk('themesbase')->delete($path);
         }
         return parent::delete();
     }

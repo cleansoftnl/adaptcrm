@@ -5,16 +5,7 @@
 
   <div class="ui stackable center aligned grid">
     <div class="ui left floated left aligned eight wide column index-nav">
-      <a href="{{ route('admin.updates.browse', [ 'module_type' => 'themes' ]) }}"
-         class="ui right labeled icon button primary">
-        Marketplace
-        <i class="shopping basket icon"></i>
-      </a>
-      <a href="{{ route('admin.updates.index', [ 'module_type' => 'themes' ]) }}"
-         class="ui right labeled icon button green">
-        Updates
-        <i class="warning icon"></i>
-      </a>
+      Temp
     </div>
     <div class="ui right floated right aligned eight wide column index-nav">
       <a class="ui button primary right" href="{{ route('admin.themes.add') }}">
@@ -28,6 +19,12 @@
       <p>No themes found. Create one maybe?</p>
     </div>
   @else
+
+
+{{--@php
+dd($items);
+@endphp--}}
+
     <table class="ui stackable compact celled definition table themes">
       <thead>
       <th></th>

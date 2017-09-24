@@ -6,7 +6,7 @@ use Illuminate\Validation\Rule;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Modules\Posts\Models\Field;
-use App\Modules\Files\Models\File;
+use App\Modules\Core\Models\File;
 use App\Modules\Posts\Models\Category;
 use Auth;
 use Storage;

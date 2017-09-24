@@ -23,6 +23,8 @@ class RolesController extends Controller
     public function add(Request $request)
     {
         $model = new Role();
+
+
         if ($request->getMethod() == 'POST') {
             $this->validate($request, [
                 'name' => 'required|unique:roles|max:255',

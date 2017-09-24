@@ -2,7 +2,7 @@
 namespace App\Modules\Core\Models;
 
 use App\Modules\Core\Events\InstallSeedEvent;
-use App\Modules\Users\Models\User;
+use App\Modules\Core\Models\User;
 use Settings;
 use Storage;
 use DB;

@@ -65,4 +65,14 @@ class Role extends ParentRole
         $this->save();
         return $this;
     }
+
+
+    public function getRolesList()
+    {
+        return Role::pluck('name', 'name');
+    }
+
+
+
+
 }

@@ -1,12 +1,12 @@
 <?php
 namespace App\Modules\Core\Services;
 
-use App\Modules\Files\Models\Album;
-use App\Modules\Files\Models\File;
-use App\Modules\Posts\Models\Category;
-use App\Modules\Posts\Models\Page;
-use App\Modules\Posts\Models\Post;
-use App\Modules\Themes\Models\Theme;
+use App\Modules\Core\Models\Album;
+use App\Modules\Core\Models\File;
+use App\Modules\Core\Models\Category;
+use App\Modules\Core\Models\Page;
+use App\Modules\Core\Models\Post;
+use App\Modules\Core\Models\Theme;
 use App\Modules\Users\Models\User;
 use Auth;
 use Cache;
@@ -21,14 +21,14 @@ class Core
 {
     public $validModels = [
         // posts
-        'posts' => '\App\Modules\Posts\Models\Post',
-        'pages' => '\App\Modules\Posts\Models\Page',
-        'tags' => '\App\Modules\Posts\Models\Tag',
-        'fields' => '\App\Modules\Posts\Models\Field',
-        'categories' => '\App\Modules\Posts\Models\Category',
+        'posts' => '\App\Modules\Core\Models\Post',
+        'pages' => '\App\Modules\Core\Models\Page',
+        'tags' => '\App\Modules\Core\Models\Tag',
+        'fields' => '\App\Modules\Core\Models\Field',
+        'categories' => '\App\Modules\Core\Models\Category',
         // files
-        'albums' => '\App\Modules\Files\Models\Album',
-        'files' => '\App\Modules\Files\Models\File',
+        'albums' => '\App\Modules\Core\Models\Album',
+        'files' => '\App\Modules\Core\Models\File',
         // users
         'users' => '\App\Modules\Users\Models\User',
         // core

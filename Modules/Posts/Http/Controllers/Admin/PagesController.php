@@ -68,7 +68,7 @@ class PagesController extends Controller
                 $errors = $validator->errors()->getMessages();
             }
         }
-        $model->body = Storage::disk('themes')->get('default/views/pages/' . $model->slug . '.blade.php');
+        $model->body = Storage::disk('themesbase')->get('default/views/pages/' . $model->slug . '.blade.php');
         return view('posts::Admin/Pages/edit', ['model' => $model, 'errors' => $errors]);
     }
 

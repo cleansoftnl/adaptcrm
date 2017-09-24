@@ -38,7 +38,7 @@ class Theme extends Model
                 $results[$key]->url = route('admin.themes.edit', ['id' => $row->id]);
             }
         } elseif (!empty($searchData['template_path'])) {
-            $body = Storage::disk('themes')->get($searchData['template_path']);
+            $body = Storage::disk('themesbase')->get($searchData['template_path']);
             $results = [
                 [
                     'body' => $body
@@ -75,8 +75,8 @@ class Theme extends Model
         $this->slug = $slug;
         $this->custom = 1;
         // enable via pkg manager
-        $this->enable();
-        $files = Storage::disk('themes')->allFiles('default');
+        //$this->enable();
+        $files = Storage::disk('themesbase')->allFiles('default');
         $paths = [
             $slug,
             $slug . '/assets',
@@ -91,18 +91,48 @@ class Theme extends Model
             $slug . '/views/users',
             $slug . '/views/files'
         ];
+
+
+        /*
+         *  Directories
+         **/
+        foreach ($paths as $path) {
+            $full_path = base_path('Themes/default') . str_replace($slug . '/', 'default/', $path);
+            if (!is_link($full_path) && !Storage::disk('themesbase')->exists($path)) {
+                Storage::disk('themesbase')->makeDirectory($path);
+            }
+        }
+
+        /*
+         *  Repeat for the public path
+         **/
         foreach ($paths as $path) {
             $full_path = public_path('themes/default') . str_replace($slug . '/', 'default/', $path);
             if (!is_link($full_path) && !Storage::disk('themes')->exists($path)) {
                 Storage::disk('themes')->makeDirectory($path);
             }
         }
+
+        /*
+         *  Files
+         **/
+        foreach ($files as $file) {
+            $new_path = str_replace('default', $slug, $file);
+            if (!Storage::disk('themesbase')->exists($new_path)) {
+                Storage::disk('themesbase')->copy($file, $new_path);
+            }
+        }
+
+        /*
+         *  Repeat for the public path
+         **/
         foreach ($files as $file) {
             $new_path = str_replace('default', $slug, $file);
             if (!Storage::disk('themes')->exists($new_path)) {
                 Storage::disk('themes')->copy($file, $new_path);
             }
         }
+
         $this->save();
         return $this;
     }
@@ -116,8 +146,8 @@ class Theme extends Model
         }
         $this->user_id = $postArray['user_id'];
         $this->save();
-        if (Storage::disk('themes')->exists($old_slug)) {
-            Storage::disk('themes')->move($old_slug, $this->slug);
+        if (Storage::disk('themesbase')->exists($old_slug)) {
+            Storage::disk('themesbase')->move($old_slug, $this->slug);
         }
         // re-enable theme
         $this->enable();
@@ -129,8 +159,8 @@ class Theme extends Model
         if ($this->id == 1) {
             return false;
         }
-        if (Storage::disk('themes')->exists($this->slug)) {
-            Storage::disk('themes')->deleteDirectory($this->slug);
+        if (Storage::disk('themesbase')->exists($this->slug)) {
+            Storage::disk('themesbase')->deleteDirectory($this->slug);
         }
         return parent::delete();
     }
@@ -139,11 +169,11 @@ class Theme extends Model
     {
         $path = $this->slug . '/theme.json';
         // exists check
-        if (!$file = Storage::disk('themes')->exists($path)) {
+        if (!$file = Storage::disk('themesbase')->exists($path)) {
             return null;
         }
         // get the theme.json file
-        $file = Storage::disk('themes')->get($path);
+        $file = Storage::disk('themesbase')->get($path);
         $file = json_decode($file, true);
         return !isset($file[$key]) ? '' : $file[$key];
     }
@@ -156,7 +186,7 @@ class Theme extends Model
     public function enable()
     {
         // try to find module
-        $client = new Client;
+        /*$client = new Client;
         // get the module
         $res = $client->request('GET', Core::getMarketplaceApiUrl() . '/module/slug/theme/' . $this->slug, ['http_errors' => false]);
         if ($res->getStatusCode() == 200) {
@@ -171,7 +201,7 @@ class Theme extends Model
         } catch (\Exception $e) {
             abort(500, 'Cannot publish module assets. Try chmodding the /public/assets/modules/ folder to 755 recursively.');
         }
-        Cache::forget('theme_count');
+        Cache::forget('theme_count');*/
     }
 
     /**
@@ -191,41 +221,56 @@ class Theme extends Model
 
     public function install($id)
     {
-        $client = new Client();
+        /*$client = new Client();
         // get the theme
         $res = $client->request('GET', Core::getMarketplaceApiUrl() . '/module/' . $id, ['http_errors' => false]);
         if ($res->getStatusCode() == 200) {
             $module = json_decode($res->getBody(), true);
         } else {
             abort(404);
-        }
+        }*/
+
+dd($id);
+
         // set slug
         $slug = ucfirst($module['slug']);
         // download the latest version
-        $res = $client->request('GET', $module['latest_version']['download_url']);
+        //$res = $client->request('GET', $module['latest_version']['download_url']);
+
+
+
+
+
         if ($res->getStatusCode() == 200) {
             $filename = $module['slug'] . '.zip';
-            Storage::disk('themes')->put($filename, $res->getBody(), 'public');
+            Storage::disk('themesbase')->put($filename, $res->getBody(), 'public');
         } else {
             abort(404);
         }
+
+
+
+
         // make the folder
-        if (!Storage::disk('themes')->exists($module['slug'])) {
-            Storage::disk('themes')->makeDirectory($module['slug']);
+        if (!Storage::disk('themesbase')->exists($module['slug'])) {
+            Storage::disk('themesbase')->makeDirectory($module['slug']);
         }
         // then attempt to extract contents
-        $path = public_path() . '/themes/' . $filename;
+        $path = base_path() . '/Themes/' . $filename;
         $zip_folder = $module['module_type'] . '-' . $module['slug'] . '-' . $module['latest_version']['version'];
-        Zipper::make($path)->folder($zip_folder)->extractTo(public_path() . '/themes');
+        Zipper::make($path)->folder($zip_folder)->extractTo(base_path() . '/Themes');
         // delete the ZIP
-        if (Storage::disk('themes')->exists($filename)) {
-            Storage::disk('themes')->delete($filename);
+        if (Storage::disk('themesbase')->exists($filename)) {
+            Storage::disk('themesbase')->delete($filename);
         }
         // once we've gotten the files all setup
         // lets run the upgrade event with the version #, if it exists
-        Core::fireEvent($slug, $slug . 'Update', $module['latest_version']['version']);
+        //Core::fireEvent($slug, $slug . 'Update', $module['latest_version']['version']);
+        /*
+         *  Copy it over to the public directory
+         **/
         // enable
-        $this->enable();
+        //$this->enable();
         Cache::forever('theme_updates', 0);
         Cache::forget('themes_updates_list');
     }

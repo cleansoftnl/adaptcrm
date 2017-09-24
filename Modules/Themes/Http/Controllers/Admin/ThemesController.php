@@ -6,7 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 use Validator;
-use App\Modules\Themes\Models\Theme;
+use App\Modules\Core\Models\Theme;
 use Storage;
 use Auth;
 use Cache;
@@ -23,7 +23,7 @@ class ThemesController extends Controller
         }
         // loop through directories and create base model
         // to display themes not in DB
-        $dirs = Storage::disk('themes')->directories();
+        $dirs = Storage::disk('themesbase')->directories();
         foreach ($dirs as $dir) {
             if (empty($items_array[$dir])) {
                 $theme = new Theme;
@@ -77,7 +77,7 @@ class ThemesController extends Controller
     public function edit_templates($id)
     {
         $theme = Theme::find($id);
-        $files = Storage::disk('themes')->allFiles($theme->slug);
+        $files = Storage::disk('themesbase')->allFiles($theme->slug);
         return view('themes::Admin/Themes/edit_templates', ['theme' => $theme, 'files' => $files]);
     }
 
@@ -90,7 +90,7 @@ class ThemesController extends Controller
                 $body = trim($request->get('body'));
                 $body = html_entity_decode($body);
                 $body = str_replace("\r\n", PHP_EOL, $body);
-                Storage::disk('themes')->put($path, $body);
+                Storage::disk('themesbase')->put($path, $body);
                 return redirect()->route('admin.themes.edit_templates', ['id' => $id])->with('success', 'Template has been saved');
             }
         }

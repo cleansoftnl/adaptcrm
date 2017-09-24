@@ -1,8 +1,8 @@
 <?php
 namespace App\Modules\Core\Http\Controllers;
 
-use App\Modules\Plugins\Models\Plugin;
-use App\Modules\Themes\Models\Theme;
+use App\Modules\Core\Models\Plugin;
+use App\Modules\Core\Models\Theme;
 use App\Modules\Users\Models\Permission;
 use App\Modules\Users\Models\Role;
 use Cache;

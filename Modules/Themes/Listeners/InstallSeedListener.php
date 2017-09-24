@@ -2,7 +2,7 @@
 namespace App\Modules\Themes\Listeners;
 
 use App\Modules\Core\Events\InstallSeedEvent;
-use App\Modules\Themes\Models\Theme;
+use App\Modules\Core\Models\Theme;
 
 class InstallSeedListener
 {

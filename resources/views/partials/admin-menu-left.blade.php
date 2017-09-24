@@ -28,14 +28,14 @@
     <i class="caret right icon pull-right"></i>
   </div>
   <div class="menu hidden">
-    <a href="{{ route('admin.albums.index') }}"
+    {{--<a href="{{ route('admin.albums.index') }}"
        class="{{ strstr(Route::currentRouteName(), 'admin.albums.') ? 'active teal' : '' }} item">
       Albums
-    </a>
-    <a href="{{ route('admin.files.index') }}"
+    </a>--}}
+    {{--<a href="{{ route('admin.files.index') }}"
        class="{{ strstr(Route::currentRouteName(), 'admin.files.') ? 'active teal' : '' }} item">
       Files
-    </a>
+    </a>--}}
   </div>
 </div>
 

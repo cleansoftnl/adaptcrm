@@ -20,7 +20,7 @@ return array(
     | will replace automatically.
     |
     */
-    'themeDefault' => 'default',
+    'themeDefault' => 'flatly',
     /*
     |--------------------------------------------------------------------------
     | Layout Default
@@ -30,7 +30,7 @@ return array(
     | will replace automatically.
     |
     */
-    'layoutDefault' => 'default',
+    'layoutDefault' => 'flatly',
     /*
     |--------------------------------------------------------------------------
     | Path to lookup theme
@@ -39,7 +39,7 @@ return array(
     | The root path contains themes collections.
     |
     */
-    'themeDir' => 'themes',
+    'themeDir' => '../Themes',
     /*
     |--------------------------------------------------------------------------
     | A pieces of theme collections

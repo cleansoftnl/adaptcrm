@@ -11,17 +11,23 @@
     "permissions": {
         "admin": {
             "admin.updates.*": 2,
-            "admin.settings.*": 2
+            "admin.settings.*": 2,
+            "admin.plugins.*": 2
         },
         "editor": {
             "plugin.core.api.index": 2,
-            "api.*": 2
+            "api.*": 2,
+            "admin.files.*": 2,
+            "admin.albums.*": 2
         },
         "demo": {
             "admin.updates.*": 1,
             "admin.settings.*": 1,
             "plugin.core.api.index": 2,
-            "api.*": 2
+            "api.*": 2,
+            "admin.files.*": 1,
+            "admin.albums.*": 1,
+            "admin.plugins.index": 1
         }
     }
 }

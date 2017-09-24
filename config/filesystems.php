@@ -76,10 +76,22 @@ return [
             'driver' => 'local',
             'root' => public_path('themes')
         ],
+
+        'themesbase' => [
+            'driver' => 'local',
+            'root' => base_path('Themes')
+        ],
+
         'plugins' => [
             'driver' => 'local',
             'root' => app_path('Modules')
         ],
+
+        'modules' => [
+            'driver' => 'local',
+            'root' => base_path('Modules')
+        ],
+
         // uploads
         'files' => [
             'driver' => 'local',

@@ -64,7 +64,7 @@ class InstallSeedListener
             $model = new Page;
             $model->name = $page['name'];
             $model->slug = str_slug($model->name, '-');
-            $model->body = Storage::disk('themes')->get('default/views/pages/' . $model->slug . '.blade.php');
+            $model->body = Storage::disk('themesbase')->get('default/views/pages/' . $model->slug . '.blade.php');
             $model->user_id = $page['user_id'];
             $model->status = 1;
             $model->ord = $index;

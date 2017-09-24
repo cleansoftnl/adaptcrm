@@ -2,8 +2,8 @@
 namespace App\Modules\Core\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Modules\Plugins\Models\Plugin;
-use App\Modules\Themes\Models\Theme;
+use App\Modules\Core\Models\Plugin;
+use App\Modules\Core\Models\Theme;
 use Artisan;
 use Cache;
 use Core;
@@ -72,21 +72,21 @@ class UpdatesController extends Controller
         $res = $client->request('GET', $module['latest_version']['download_url']);
         if ($res->getStatusCode() == 200) {
             $filename = $module['slug'] . '.zip';
-            Storage::disk('themes')->put($filename, $res->getBody(), 'public');
+            Storage::disk('themesbase')->put($filename, $res->getBody(), 'public');
         } else {
             abort(404);
         }
         // make the folder
-        if (!Storage::disk('themes')->exists($module['slug'])) {
-            Storage::disk('themes')->makeDirectory($module['slug']);
+        if (!Storage::disk('themesbase')->exists($module['slug'])) {
+            Storage::disk('themesbase')->makeDirectory($module['slug']);
         }
         // then attempt to extract contents
         $path = public_path() . '/themes/' . $filename;
         $zip_folder = $module['module_type'] . '-' . $module['slug'] . '-' . $module['latest_version']['version'];
         Zipper::make($path)->folder($zip_folder)->extractTo(public_path() . '/themes');
         // delete the ZIP
-        if (Storage::disk('themes')->exists($filename)) {
-            Storage::disk('themes')->delete($filename);
+        if (Storage::disk('themesbase')->exists($filename)) {
+            Storage::disk('themesbase')->delete($filename);
         }
         // once we've gotten the files all setup
         // lets run the install event, if it exists
@@ -151,7 +151,7 @@ class UpdatesController extends Controller
         $theme = new Theme;
         $theme->install($id);
         // we'll return to the themes index on success
-        return redirect()->route('admin.themes.index')->with('success', $module['name'] . ' theme has been updated!');
+        return redirect()->route('admin.themes.index')->with('success', $theme['name'] . ' theme has been updated!');
     }
 
     public function updateThemes(Request $request)

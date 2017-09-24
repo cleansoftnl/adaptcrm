@@ -43,8 +43,8 @@ class Tag extends Model
         $this->save();
         // store the contents
         $path = Cache::get('theme', 'default') . '/views/tags/';
-        if (!Storage::disk('themes')->exists($path . $this->slug . '.blade.php')) {
-            Storage::disk('themes')->copy($path . 'view.blade.php', $path . $this->slug . '.blade.php');
+        if (!Storage::disk('themesbase')->exists($path . $this->slug . '.blade.php')) {
+            Storage::disk('themesbase')->copy($path . 'view.blade.php', $path . $this->slug . '.blade.php');
         }
         return $this;
     }
@@ -59,8 +59,8 @@ class Tag extends Model
         $this->save();
         // store the contents
         $path = Cache::get('theme', 'default') . '/views/tags/';
-        if (!Storage::disk('themes')->exists($path . $this->slug . '.blade.php')) {
-            Storage::disk('themes')->copy($path . 'view.blade.php', $path . $this->slug . '.blade.php');
+        if (!Storage::disk('themesbase')->exists($path . $this->slug . '.blade.php')) {
+            Storage::disk('themesbase')->copy($path . 'view.blade.php', $path . $this->slug . '.blade.php');
         }
         return $this;
     }
@@ -96,8 +96,8 @@ class Tag extends Model
     public function delete()
     {
         $path = Cache::get('theme', 'default') . '/views/tags/' . $this->slug . '.blade.php';
-        if (Storage::disk('themes')->exists($path)) {
-            Storage::disk('themes')->delete($path);
+        if (Storage::disk('themesbase')->exists($path)) {
+            Storage::disk('themesbase')->delete($path);
         }
         return parent::delete();
     }

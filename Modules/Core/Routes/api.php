@@ -11,6 +11,6 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/core', function (Request $request) {
-    // return $request->core();
+Route::get('/plugins', function (Request $request) {
+    // return $request->plugins();
 })->middleware('auth:api');

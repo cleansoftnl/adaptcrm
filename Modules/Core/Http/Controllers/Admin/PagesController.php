@@ -6,8 +6,13 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 use App\Modules\Core\Models\Page;
+
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Modules\Posts\Models\Post;
+use Theme;
 use Storage;
 use Auth;
+use Cache;
 use Validator;
 
 class PagesController extends Controller
@@ -34,9 +39,17 @@ class PagesController extends Controller
 
     public function dashboard()
     {
-        $theme = Theme::uses('coreui')->layout('admincp');
-        return $theme->scope('posts::Admin/Pages/dashboard')->render();
-        //return view('posts::Admin/Pages/dashboard');
+        $theme = Theme::uses('coreui')->layout('front');
+        ///$theme = Theme::uses('coreui')->layout('admincp');
+        return $theme->scope('Admin/Pages/dashboard')->render();
+        //return view('Admin/Pages/dashboard');
+
+/*
+$theme = Theme::uses('flatly')->layout('front');
+return $theme->scope('pages.home', compact('page', 'posts'))->render();
+**/
+
+
     }
 
     public function index(Request $request)

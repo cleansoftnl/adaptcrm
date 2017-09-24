@@ -12,7 +12,7 @@ use Validator;
 
 class PagesController extends Controller
 {
-    public function dashboard()
+    public function dashbord()
     {
         return view('posts::Admin/Pages/dashboard');
     }

@@ -17,9 +17,13 @@ Route::group(['prefix' => 'posts'], function () {
 Route::get('/archive/{year}/{month}', ['uses' => '\App\Modules\Posts\Http\Controllers\PostsController@archive', 'as' => 'posts.archive']);
 Route::get('/tag/{slug}', ['uses' => '\App\Modules\Posts\Http\Controllers\TagsController@view', 'as' => 'tags.view']);
 Route::get('/category/{slug}', ['uses' => '\App\Modules\Posts\Http\Controllers\CategoriesController@view', 'as' => 'categories.view']);
+
+
+
+
+
+
 Route::group(['prefix' => 'admincp', 'namespace' => 'Admin',], function () {
-    Route::get('/', ['uses' => 'PagesController@dashboard', 'as' => 'admin.dashboard']);
-    // pages
     Route::group(['prefix' => 'pages'], function () {
         Route::get('/', ['uses' => 'PagesController@index', 'as' => 'admin.pages.index']);
         Route::any('/add', ['uses' => 'PagesController@add', 'as' => 'admin.pages.add']);

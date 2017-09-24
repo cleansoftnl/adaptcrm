@@ -16,7 +16,7 @@ class PluginsController extends Controller
         // current plugins
         $items = Module::all();
         $core_modules = Plugin::getCoreModules();
-        return view('plugins::Admin/Plugins/index', compact('items', 'core_modules'));
+        return view('core::Admin/Plugins/index', compact('items', 'core_modules'));
     }
 
     public function install($slug)

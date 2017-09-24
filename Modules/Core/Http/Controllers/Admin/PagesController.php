@@ -39,7 +39,7 @@ class PagesController extends Controller
 
     public function dashboard()
     {
-        $theme = Theme::uses('coreui')->layout('front');
+        $theme = Theme::uses('coreui')->layout('coreui');
         ///$theme = Theme::uses('coreui')->layout('admincp');
         return $theme->scope('Admin/Pages/dashboard')->render();
         //return view('Admin/Pages/dashboard');

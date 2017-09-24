@@ -71,7 +71,7 @@
    class="{{ strstr(Route::currentRouteName(), 'admin.themes.') ? 'active teal' : '' }} item">
   Themes
   <div
-    class="ui black label">{{ Cache::remember('theme_count', 3600, function() { return \App\Modules\Themes\Models\Theme::count(); }) }}</div>
+    class="ui black label">{{ Cache::remember('theme_count', 3600, function() { return \App\Modules\Core\Models\Theme::count(); }) }}</div>
 </a>
 <a href="{{ route('admin.settings.index') }}"
    class="{{ strstr(Route::currentRouteName(), 'admin.settings.') ? 'active teal' : '' }} item">

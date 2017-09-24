@@ -33,6 +33,17 @@ class InstallSeedListener
      */
     public function handle(InstallSeedEvent $event)
     {
+
+        $theme = new Theme;
+        $theme->name = 'Default';
+        $theme->slug = str_slug($theme->name, '-');
+        $theme->user_id = 1;
+        $theme->status = 1;
+        $theme->custom = 0;
+        $theme->save();
+
+
+
         $version = Core::getVersion();
         // create categories
         $categories = [

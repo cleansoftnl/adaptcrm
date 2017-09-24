@@ -14,3 +14,8 @@ use Illuminate\Http\Request;
 Route::get('/plugins', function (Request $request) {
     // return $request->plugins();
 })->middleware('auth:api');
+
+
+Route::get('/themes', function (Request $request) {
+    // return $request->themes();
+})->middleware('auth:api');

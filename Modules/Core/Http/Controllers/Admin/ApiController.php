@@ -20,9 +20,9 @@ class ApiController extends Controller
         // users
         'users' => '\App\Modules\Users\Models\User',
         // core
-        'settings' => '\App\Modules\Settings\Models\Setting',
+        'settings' => '\App\Modules\Core\Models\Setting',
         // themes
-        'themes' => '\App\Modules\Themes\Models\Theme',
+        'themes' => '\App\Modules\Core\Models\Theme',
     ];
 
     public function index(Request $request, $module)

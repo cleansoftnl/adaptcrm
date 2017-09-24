@@ -3,7 +3,7 @@
 namespace App\Modules\Core\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
+//use Laravel\Scout\Searchable;
 
 use App\Modules\Core\Models\SettingsCategory;
 

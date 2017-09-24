@@ -11,8 +11,8 @@
 |
 */
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::group([ 'prefix' => 'themes', 'namespace' => 'Admin', 'middleware' => 'role:admin' ], function() {
+Route::group(['prefix' => 'admincp'], function () {
+    Route::group([ 'prefix' => 'themes', 'namespace' => 'Admin',  ], function() {
         Route::get('/', [ 'uses' => 'ThemesController@index', 'as' => 'admin.themes.index' ]);
         Route::any('/add', [ 'uses' => 'ThemesController@add', 'as' => 'admin.themes.add' ]);
         Route::any('/build/{step?}', [ 'uses' => 'ThemesController@build', 'as' => 'admin.themes.build' ]);

@@ -20,9 +20,9 @@ class RoleMiddleware
             return redirect('login');
         }
 
-        if (!$request->user()->isAllowed()) {
+        /*if (!$request->user()->isAllowed()) {
            abort(403, 'Sorry! You do not have access to that page.');
-        }
+        }*/
 
         return $next($request);
     }

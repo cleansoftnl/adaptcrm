@@ -1,9 +1,7 @@
 <?php
-
 namespace App\Modules\Users\Listeners;
 
 use App\Modules\Core\Events\InstallSeedEvent;
-
 use App\Modules\Users\Models\Role;
 
 class InstallSeedListener
@@ -21,7 +19,7 @@ class InstallSeedListener
     /**
      * Handle the event.
      *
-     * @param  OrderShipped  $event
+     * @param  OrderShipped $event
      * @return void
      */
     public function handle(InstallSeedEvent $event)
@@ -44,20 +42,18 @@ class InstallSeedListener
                 'redirect_route_name' => 'admin.dashboard'
             ],
             [
-            	'name' => 'Demo',
-            	'level' => 2,
-            	'redirect_route_name' => 'admin.dashboard'
+                'name' => 'Demo',
+                'level' => 2,
+                'redirect_route_name' => 'admin.dashboard'
             ]
         ];
-        foreach($roles as $role) {
+        foreach ($roles as $role) {
             $model = new Role;
-
             $model->name = str_slug($role['name'], '-');
             $model->guard_name = 'web';
             $model->level = $role['level'];
             $model->core_role = 1;
             $model->redirect_route_name = $role['redirect_route_name'];
-
             $model->save();
         }
     }

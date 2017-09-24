@@ -1,7 +1,5 @@
 <?php
-
 define('LARAVEL_START', microtime(true));
-
 /*
 |--------------------------------------------------------------------------
 | Register The Composer Auto Loader
@@ -13,14 +11,11 @@ define('LARAVEL_START', microtime(true));
 | loading of any our classes "manually". Feels great to relax.
 |
 */
-$composer_path = __DIR__.'/../vendor/autoload.php';
-
+$composer_path = __DIR__ . '/../vendor/autoload.php';
 if (!file_exists($composer_path)) {
-	die('Please install/run composer. <a href="https://adaptcms.gitbooks.io/adaptcms/content/technology/composer.md" target="_blank" rel="noopener noreferrer">How to use Composer</a>');
+    die('Please install/run composer. <a href="https://adaptcms.gitbooks.io/adaptcms/content/technology/composer.md" target="_blank" rel="noopener noreferrer">How to use Composer</a>');
 }
-
 require $composer_path;
-
 /*
 |--------------------------------------------------------------------------
 | Include The Compiled Class File
@@ -31,9 +26,7 @@ require $composer_path;
 | by a request. The Artisan "optimize" is used to create this file.
 |
 */
-
-$compiledPath = __DIR__.'/cache/compiled.php';
-
+$compiledPath = __DIR__ . '/cache/compiled.php';
 if (file_exists($compiledPath)) {
     require $compiledPath;
 }

@@ -12,7 +12,7 @@
         "barryvdh/laravel-debugbar": "2.4.*",
         "jeremeamia/superclosure": "dev-master",
         "laravel/scout": "^3.0",
-        "teamtnt/laravel-scout-tntsearch-driver": "^2.0",
+        "adaptcms/laravel-theme": "master",
         "offline/persistent-settings": "~1.0.0",
         "guzzlehttp/guzzle": "^6.2",
         "chumper/zipper": "1.0.*",
@@ -25,8 +25,7 @@
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~5.7",
         "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*",
-        "adaptcms/laravel-theme": "master"
+        "symfony/dom-crawler": "3.1.*"
     },
     "autoload": {
         "classmap": [
@@ -63,7 +62,7 @@
     },
     "repositories": [{
         "type": "vcs",
-        "url": "git@github.com:adaptcms/laravel-theme.git"
+        "url": "git@github.com:cleansoftmods/laravel-theme.git"
     }],
     "minimum-stability": "dev",
     "extra": {

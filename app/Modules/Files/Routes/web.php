@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'role:admin'], function () {
+Route::group(['prefix' => 'admincp', 'namespace' => 'Admin', ], function () {
     Route::group([ 'prefix' => 'files' ], function() {
         Route::get('/', [ 'uses' => 'FilesController@index', 'as' => 'admin.files.index' ]);
         Route::any('/add', [ 'uses' => 'FilesController@add', 'as' => 'admin.files.add' ]);

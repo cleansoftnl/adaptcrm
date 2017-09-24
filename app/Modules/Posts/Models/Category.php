@@ -3,13 +3,13 @@
 namespace App\Modules\Posts\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
+//use Laravel\Scout\Searchable;
 
 use Cache;
 
 class Category extends Model
 {
-	use Searchable;
+	//use Searchable;
 
     /**
      * The table associated with the model.

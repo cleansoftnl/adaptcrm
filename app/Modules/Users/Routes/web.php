@@ -12,7 +12,7 @@
 */
 Auth::routes();
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'role:admin'], function () {
+Route::group(['prefix' => 'staffcp', 'namespace' => 'Admin', ], function () {
     Route::group([ 'prefix' => 'users' ], function() {
 	    Route::get('/', [ 'uses' => 'UsersController@index', 'as' => 'admin.users.index' ]);
 	    Route::any('/add', [ 'uses' => 'UsersController@add', 'as' => 'admin.users.add' ]);

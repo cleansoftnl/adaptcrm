@@ -21,7 +21,7 @@ class InstallController extends Controller
         $install = new Install;
 
         // first let's connect to the adaptcms.com servers
-        Core::syncWebsiteInit('index');
+        //Core::syncWebsiteInit('index');
 
         $checks = $install->getServerChecks();
 
@@ -56,7 +56,7 @@ class InstallController extends Controller
         }
 
         // let's connect to the adaptcms.com servers
-        Core::syncWebsiteInit('database');
+        //Core::syncWebsiteInit('database');
 
         return view('core::Install/database', compact('connection_types'));
     }
@@ -67,10 +67,10 @@ class InstallController extends Controller
             Cache::forever('cms_collect_data', $request->get('cms_collect_data'));
             Cache::put('webhost', $request->get('webhost'), 15);
 
-            Core::syncWebsiteInit('me', [
+            /*Core::syncWebsiteInit('me', [
                 'cms_collect_data' => $request->get('cms_collect_data'),
                 'webhost' => $request->get('webhost')
-            ]);
+            ]);*/
 
             return redirect()->route('install.account')->with('success', 'Almost there!');
         }
@@ -78,7 +78,7 @@ class InstallController extends Controller
         $install = new Install;
 
         // first let's connect to the adaptcms.com servers
-        Core::syncWebsiteInit('me');
+        //Core::syncWebsiteInit('me');
 
         Cache::put('install_me', true, 15);
 
@@ -92,9 +92,9 @@ class InstallController extends Controller
         if ($request->getMethod() == 'POST') {
             // save admin account
             $user->fill($request->except([ '_token' ]));
-            
+
             $user->status = 1;
-            $this->syncRoles([ 'admin', 'demo', 'member', 'editor' ]);
+            $user->syncRoles([ 'admin', 'demo', 'member', 'editor' ]);
 
             $user->save();
 
@@ -102,7 +102,7 @@ class InstallController extends Controller
         }
 
         // let's connect to the adaptcms.com servers
-        Core::syncWebsiteInit('account');
+        //Core::syncWebsiteInit('account');
 
         Cache::put('install_account', true, 15);
 
@@ -112,7 +112,7 @@ class InstallController extends Controller
     public function finished(Request $request)
     {
         // let's connect to the adaptcms.com servers
-        Core::syncWebsiteInit('finished');
+        //Core::syncWebsiteInit('finished');
 
         Cache::put('install_finished', true, 15);
 

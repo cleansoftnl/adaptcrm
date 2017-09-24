@@ -10,7 +10,7 @@ class Role extends ParentRole
     use HasPermissions;
 
     public $core_role_levels = [
-        'admin' => 4,
+        'admin' => 99,
         'editor' => 3,
         'demo' => 2,
         'member' => 1
@@ -20,7 +20,7 @@ class Role extends ParentRole
         1 => 'member',
         2 => 'demo',
         3 => 'editor',
-        4 => 'admin'
+        99 => 'admin'
     ];
 
     public function scopeBySlug($query, $slug)

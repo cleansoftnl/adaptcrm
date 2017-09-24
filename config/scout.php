@@ -1,7 +1,5 @@
 <?php
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Search Engine
@@ -14,9 +12,7 @@ return [
     | Supported: "algolia", "null"
     |
     */
-
     'driver' => env('SCOUT_DRIVER', null),
-
     /*
     |--------------------------------------------------------------------------
     | Index Prefix
@@ -27,9 +23,7 @@ return [
     | "tenants" or applications sharing the same search infrastructure.
     |
     */
-
     'prefix' => env('SCOUT_PREFIX', ''),
-
     /*
     |--------------------------------------------------------------------------
     | Queue Data Syncing
@@ -40,9 +34,7 @@ return [
     | all automatic data syncing will get queued for better performance.
     |
     */
-
     'queue' => false,
-
     /*
     |--------------------------------------------------------------------------
     | Algolia Configuration
@@ -53,21 +45,18 @@ return [
     | in your application ID and admin API key to get started searching.
     |
     */
-
     'algolia' => [
         'id' => env('ALGOLIA_APP_ID', ''),
         'secret' => env('ALGOLIA_SECRET', ''),
     ],
-
-
-	'tntsearch' => [
-	    'storage'  => storage_path(), //place where the index files will be stored
-	    'fuzziness' => env('TNTSEARCH_FUZZINESS', true),
-	    'fuzzy' => [
-	        'prefix_length' => 2,
-	        'max_expansions' => 50,
-	        'distance' => 2
-	    ],
-	    'asYouType' => false,
-	],
+    'tntsearch' => [
+        'storage' => storage_path(), //place where the index files will be stored
+        'fuzziness' => env('TNTSEARCH_FUZZINESS', true),
+        'fuzzy' => [
+            'prefix_length' => 2,
+            'max_expansions' => 50,
+            'distance' => 2
+        ],
+        'asYouType' => false,
+    ],
 ];

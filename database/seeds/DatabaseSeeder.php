@@ -1,11 +1,8 @@
 <?php
-
+use App\Modules\Users\Models\Role;
 use Illuminate\Database\Seeder;
 
 //use App\Modules\Core\Events\InstallSeedEvent;
-use App\Modules\Users\Models\Role;
-
-
 class DatabaseSeeder extends Seeder
 {
     /**

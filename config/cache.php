@@ -1,7 +1,5 @@
 <?php
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Cache Store
@@ -14,9 +12,7 @@ return [
     | Supported: "apc", "array", "database", "file", "memcached", "redis"
     |
     */
-
     'default' => env('CACHE_DRIVER', 'file'),
-
     /*
     |--------------------------------------------------------------------------
     | Cache Stores
@@ -27,28 +23,22 @@ return [
     | same cache driver to group types of items stored in your caches.
     |
     */
-
     'stores' => [
-
         'apc' => [
             'driver' => 'apc',
         ],
-
         'array' => [
             'driver' => 'array',
         ],
-
         'database' => [
             'driver' => 'database',
             'table' => 'cache',
             'connection' => null,
         ],
-
         'file' => [
             'driver' => 'file',
             'path' => storage_path('framework/cache'),
         ],
-
         'memcached' => [
             'driver' => 'memcached',
             'persistent_id' => env('MEMCACHED_PERSISTENT_ID'),
@@ -67,14 +57,11 @@ return [
                 ],
             ],
         ],
-
         'redis' => [
             'driver' => 'redis',
             'connection' => 'default',
         ],
-
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Cache Key Prefix
@@ -85,7 +72,5 @@ return [
     | value to get prefixed to all our keys so we can avoid collisions.
     |
     */
-
     'prefix' => 'adaptcms',
-
 ];

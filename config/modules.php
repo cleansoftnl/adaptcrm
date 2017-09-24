@@ -1,7 +1,5 @@
 <?php
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Path to Modules
@@ -12,9 +10,7 @@ return [
     | copy your module assets (CSS, images, etc.) to your public directory.
     |
     */
-
-    'path' => app_path('Modules'),
-
+    'path' => base_path('Modules'),
     /*
     |--------------------------------------------------------------------------
     | Modules Default State
@@ -25,9 +21,7 @@ return [
     | not provided then the module will default to being 'enabled'.
     |
     */
-
     'enabled' => true,
-
     /*
     |--------------------------------------------------------------------------
     | Modules Base Namespace
@@ -38,9 +32,7 @@ return [
     | by the module:make Artisan command.
     |
     */
-
     'namespace' => 'App\Modules\\',
-
     /*
     |--------------------------------------------------------------------------
     | Default Module Driver
@@ -53,9 +45,7 @@ return [
     | Supported: "local"
     |
     */
-
     'driver' => 'local',
-
     /*
     |--------------------------------------------------------------------------
     | Remap Module Subdirectories
@@ -65,7 +55,6 @@ return [
     | be respected by all commands and generators.
     |
     */
-
     'pathMap' => [
         // To change where migrations go, specify the default
         // location as the key and the new location as the value:

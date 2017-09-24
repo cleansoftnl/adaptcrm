@@ -1,7 +1,5 @@
 <?php
-
 return array(
-
     /*
     |--------------------------------------------------------------------------
     | Inherit from another theme
@@ -13,9 +11,7 @@ return array(
     | [Notice] assets cannot inherit.
     |
     */
-
     'inherit' => null, //default
-
     /*
     |--------------------------------------------------------------------------
     | Listener from events
@@ -27,17 +23,13 @@ return array(
     | [Notice] these event can be override by package config.
     |
     */
-
     'events' => array(
-
         // Before event inherit from package config and the theme that call before,
         // you can use this event to set meta, breadcrumb template or anything
         // you want inheriting.
-        'before' => function($theme)
-        {
+        'before' => function ($theme) {
             // You can remove this line anytime.
             $theme->setTitle('Copyright ©  2013 - Laravel.in.th');
-
             // Breadcrumb template.
             // $theme->breadcrumb()->setTemplate('
             //     <ul class="breadcrumb">
@@ -51,35 +43,26 @@ return array(
             //     </ul>
             // ');
         },
-
         // Listen on event before render a theme,
         // this event should call to assign some assets,
         // breadcrumb template.
-        'beforeRenderTheme' => function($theme)
-        {
+        'beforeRenderTheme' => function ($theme) {
             // You may use this event to set up your assets.
             // $theme->asset()->usePath()->add('core', 'core.js');
             // $theme->asset()->add('jquery', 'vendor/jquery/jquery.min.js');
             // $theme->asset()->add('jquery-ui', 'vendor/jqueryui/jquery-ui.min.js', array('jquery'));
-
             // Partial composer.
             // $theme->partialComposer('header', function($view)
             // {
             //     $view->with('auth', Auth::user());
             // });
         },
-
         // Listen on event before render a layout,
         // this should call to assign style, script for a layout.
         'beforeRenderLayout' => array(
-
-            'default' => function($theme)
-            {
+            'default' => function ($theme) {
                 // $theme->asset()->usePath()->add('ipad', 'css/layouts/ipad.css');
             }
-
         )
-
     )
-
 );

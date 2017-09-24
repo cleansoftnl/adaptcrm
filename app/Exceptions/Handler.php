@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-
 use Schema;
 
 class Handler extends ExceptionHandler
@@ -29,7 +27,7 @@ class Handler extends ExceptionHandler
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
-     * @param  \Exception  $exception
+     * @param  \Exception $exception
      * @return void
      */
     public function report(Exception $exception)
@@ -40,36 +38,32 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $exception
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
-         //dd($exception->getCode(), $exception->getMessage());
-         
-         // laravel log error check
-         if (strstr($exception->getMessage(), 'storage/logs/laravel.log" could not be opened')) {
-         	die('Please set write permissions for the <strong>storage</strong> folder. `chmod 777 -R storage` for terminal users.');
-         }
-
+        //dd($exception->getCode(), $exception->getMessage());
+        // laravel log error check
+        if (strstr($exception->getMessage(), 'storage/logs/laravel.log" could not be opened')) {
+            die('Please set write permissions for the <strong>storage</strong> folder. `chmod 777 -R storage` for terminal users.');
+        }
         // not yet installed, check
         if ($exception->getCode() == 1045 && strstr($exception->getMessage(), 'Access denied for user')) {
             return redirect()->route('install.index')->with('success', 'Hey There! Let\'s get AdaptCMS Installed!');
         }
-
         if (!Schema::hasTable('users')) {
             return redirect()->route('install.index')->with('success', 'Hey There! Let\'s get AdaptCMS Installed!');
         }
-
         return parent::render($request, $exception);
     }
 
     /**
      * Convert an authentication exception into an unauthenticated response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Auth\AuthenticationException  $exception
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Auth\AuthenticationException $exception
      * @return \Illuminate\Http\Response
      */
     protected function unauthenticated($request, AuthenticationException $exception)
@@ -77,7 +71,6 @@ class Handler extends ExceptionHandler
         if ($request->expectsJson()) {
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
-
         return redirect()->guest('login');
     }
 }

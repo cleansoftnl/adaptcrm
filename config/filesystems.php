@@ -1,7 +1,5 @@
 <?php
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Filesystem Disk
@@ -14,9 +12,7 @@ return [
     | Supported: "local", "ftp", "s3", "rackspace"
     |
     */
-
     'default' => 'local',
-
     /*
     |--------------------------------------------------------------------------
     | Default Cloud Filesystem Disk
@@ -27,9 +23,7 @@ return [
     | will be bound as the Cloud disk implementation in the container.
     |
     */
-
     'cloud' => 's3',
-
     /*
     |--------------------------------------------------------------------------
     | Filesystem Disks
@@ -40,40 +34,32 @@ return [
     | been setup for each driver as an example of the required options.
     |
     */
-
     'disks' => [
-
         'base' => [
             'driver' => 'local',
             'root' => base_path()
         ],
-
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
-
         'framework-cache' => [
             'driver' => 'local',
             'root' => storage_path('framework/cache'),
         ],
-
         'framework-sessions' => [
             'driver' => 'local',
             'root' => storage_path('framework/sessions'),
         ],
-
         'framework-views' => [
             'driver' => 'local',
             'root' => storage_path('framework/views'),
         ],
-
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'visibility' => 'public',
         ],
-
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',
@@ -81,32 +67,28 @@ return [
             'region' => 'your-region',
             'bucket' => 'your-bucket',
         ],
-
         'app' => [
             'driver' => 'local',
             'root' => app_path(),
         ],
-
         // themes & plugins
         'themes' => [
-	         'driver' => 'local',
-	         'root' => public_path('themes')
+            'driver' => 'local',
+            'root' => public_path('themes')
         ],
         'plugins' => [
-  	    	'driver' => 'local',
-  	    	'root' => app_path('Modules')
+            'driver' => 'local',
+            'root' => app_path('Modules')
         ],
-
-		// uploads
-		'files' => [
-	    	'driver' => 'local',
-	    	'root' => public_path('uploads'),
-	    	'path' => '/uploads'
+        // uploads
+        'files' => [
+            'driver' => 'local',
+            'root' => public_path('uploads'),
+            'path' => '/uploads'
         ],
-        
         // adaptcms
         'cdn' => [
-        	'driver' => 's3',
+            'driver' => 's3',
         ]
     ]
 ];
